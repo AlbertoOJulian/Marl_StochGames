@@ -37,12 +37,79 @@ agent = FixedPolicyAgent(
 )
 
 
+## Expected Arrivals, Service, and Drift
+print(
+    "\nExpected Arrivals:"
+)
+
+print(
+    environment.expected_arrivals()
+)
+
+
+for action in [
+
+        "NoAction",
+
+        "LowService",
+
+        "MediumService",
+
+        "HighService"
+
+]:
+
+    print(
+
+        f"\nExpected Service "
+        f"{action}:"
+
+    )
+
+    print(
+
+        environment
+        .expected_service(
+            action
+        )
+    )
+
+
+print("\nExpected Drift")
+
+for action in [
+
+        "NoAction",
+
+        "LowService",
+
+        "MediumService",
+
+        "HighService"
+
+]:
+
+    drift = (
+        environment
+        .expected_drift(
+            action
+        )
+    )
+
+    print(
+
+        f"{action}: "
+
+        f"{drift:.2f}"
+
+    )
+
 queue = 0
 
 history = []
 
 
-for t in range(1000):
+for t in range(100):
 
     action = (
         agent.choose_action(
