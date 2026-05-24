@@ -22,6 +22,10 @@ from utils.statistics import (
     EpisodeStatistics
 )
 
+from algorithms.policy_evaluation import (
+    PolicyEvaluator
+)
+
 
 queue_config = QueueConfig()
 
@@ -159,3 +163,33 @@ stats = (
 )
 
 stats.summarize()
+
+evaluator=PolicyEvaluator(
+
+    environment,
+
+    agent,
+
+    gamma=.95,
+
+    iterations=1000
+)
+
+values=(
+    evaluator.evaluate()
+)
+
+print(
+    "\nState Values"
+)
+
+for state,value in (
+        values.items()
+):
+
+    print(
+
+        f"Queue {state}: "
+
+        f"{value:.2f}"
+    )
